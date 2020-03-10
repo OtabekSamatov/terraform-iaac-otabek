@@ -12,13 +12,13 @@ output "Bucketname" {
 }
 
 output "AMI" {
-  value = "${module.wordpress.KEY}"
+  value = "${module.wordpress.AMI}"
 }
 
 output "ROUTE53" {
-  value = "${module.wordpress.KEY}"
+  value = "${module.wordpress.ROUTE53}"
 }
 
 output "SEC_GROUP" {
-  value = "${module.wordpress.KEY}"
+  value = "${module.wordpress.SEC_GROUP}"
 }
