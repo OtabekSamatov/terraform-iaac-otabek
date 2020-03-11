@@ -1,6 +1,6 @@
 # Provide a region for VPC
 
-environment                     =   "singapore"
+environment                     =   "Singapore"
 region                          =   "ap-southeast-1"
 
 
