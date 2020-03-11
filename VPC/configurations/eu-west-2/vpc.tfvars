@@ -1,7 +1,7 @@
 # Provide a region for VPC
 
-environment                     =   "London"
-region                          =   "eu-west-2"
+environment                     =   "Paris"
+region                          =   "eu-west-3"
 
 
 s3_bucket                       =	"my-tf-test-bucket-otabek"
