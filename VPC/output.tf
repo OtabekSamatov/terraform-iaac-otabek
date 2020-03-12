@@ -14,15 +14,15 @@ output "Subnet3" {
     value = "$module.dev.subnet3}"
 }
 
-output "Private Subnet1" {
+output "Private_Subnet1" {
     value = "$module.dev.Private_subnet1}"
 }
 
-output "Private Subnet2" {
+output "Private_Subnet2" {
     value = "$module.dev.Private_subnet2}"
 }
 
-output "Private Subnet1" {
+output "Private_Subnet1" {
     value = "$module.dev.Private_subnet3}"
 }
 
