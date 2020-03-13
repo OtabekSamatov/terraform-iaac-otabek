@@ -2,6 +2,8 @@ provider "aws" {
   region = "us-west-2"
 }
 
+# Gets ubuntu AMI
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -18,6 +20,31 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-output "AMI_ID" {
+output "UBUNTU_AMI_ID" {
     value = "${data.aws_ami.ubuntu.id}"
+}
+
+# Gets CentOS AMI
+
+data "aws_ami" "centos" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["CentOS Linux 7 x86_64 HVM EBS *"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["679593333241"] # Canonical
+}
+
+
+
+
+output "CENTOS_AMI_ID" {
+    value = "${data.aws_ami.centos.id}"
 }
