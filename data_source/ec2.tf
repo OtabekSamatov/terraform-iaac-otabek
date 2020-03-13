@@ -1,9 +1,7 @@
 provider "aws" {
   region = "us-west-2"
 }
-
-# Gets ubuntu AMI
-
+# Gets Ubuntu AMI
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -21,17 +19,19 @@ data "aws_ami" "ubuntu" {
 }
 
 output "UBUNTU_AMI_ID" {
-    value = "${data.aws_ami.ubuntu.id}"
+  value = "${data.aws_ami.ubuntu.id}"
 }
 
-# Gets CentOS AMI
 
+
+
+# Gets Centos AMI
 data "aws_ami" "centos" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["CentOS Linux 7 x86_64 HVM EBS *"]
+    values = ["CentOS Linux 7 x86_64 HVM EBS ENA 1901_01-b7*"]
   }
 
   filter {
@@ -42,11 +42,8 @@ data "aws_ami" "centos" {
   owners = ["679593333241"] # Canonical
 }
 
-
-
-
 output "CENTOS_AMI_ID" {
-    value = "${data.aws_ami.centos.id}"
+  value = "${data.aws_ami.ubuntu.id}"
 }
 
 resource "aws_key_pair" "provisioner" {
@@ -55,46 +52,30 @@ resource "aws_key_pair" "provisioner" {
 }
 
 resource "aws_instance" "web" {
-  ami = "${data.aws_ami.ubuntu.id}"
+  ami           = "${data.aws_ami.centos.id}"
   instance_type = "t2.micro"
-  key_name = "${aws_key_pair.provisioner.key_name}" 
-  
+  key_name = "${aws_key_pair.provisioner.key_name}"
+  provisioner "remote-exec" {
+    connection {
+        type     = "ssh"
+        user     = "centos"
+        private_key = "${file("~/.ssh/id_rsa")}"
+        host     = "${self.public_ip}"
+    }
 
 
-provisioner "remote-exec" {
-  connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = "${file("~/.ssh/id_rsa")}"
-    host = "${self.public_ip}"
-       }
-  
-  
-  
-  inline = [
-    "sudo apt-get install telnet -y"
-    "sudo mkdir /tmp/ubuntu",
-    "w",
-    "free -m"
-    "sleep 5"
-    ]
+        inline = [
+           "sudo yum install telnet -y",
+           "sudo mkdir /tmp/centos",
+           "w",
+           "free -m",
+           "sleep 5"
+        ]
 
-  }
-  
-  
-  
-  
-  source      = "test"
-  destination = "/tmp/"
-
- 
-}
-  
-  
-  
-
-  
-  tags = {
-    Name = "HelloWorld"
     }
     
+
+  tags = {
+    Name = "HelloWorld"
+  }
+}
