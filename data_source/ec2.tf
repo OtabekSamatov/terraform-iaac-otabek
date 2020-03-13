@@ -52,12 +52,49 @@ output "CENTOS_AMI_ID" {
 resource "aws_key_pair" "provisioner" {
   key_name   = "provisioner-key"
   public_key = "${file("~/.ssh/id_rsa.pub")}"
+}
 
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
+  key_name = "${aws_key_pair.provisioner.key_name" 
+  
 
+
+provisioner "remote-exec" {
+  connection {
+    type = "ssh"
+    user = "ubuntu"
+    private_key = "${file("~/.ssh/id_rsa")}"
+    host = "${self.public_ip}"
+       }
+  
+  
+  
+  inline = [
+    "sudo apt-get install telnet -y"
+    "sudo mkdir /tmp/ubuntu",
+    "w",
+    "free -m"
+    "sleep 5"
+    ]
+
+  }
+  
+  
+  
+  
+  source      = "test"
+  destination = "/tmp/"
+
+ 
+}
+  
+  
+  
+
+  
   tags = {
     Name = "HelloWorld"
-  }
-}
+    }
+ }   
