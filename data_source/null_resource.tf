@@ -7,19 +7,19 @@ resource "null_resource" "otabek" {
     provisioner "remote-exec" {
     connection {
         type     = "ssh"
-        user     = "centos"
+        user     = "ubuntu"
         private_key = "${file("~/.ssh/id_rsa")}"
         host     = "${aws_instance.web.public_ip}"
     }
 
 
         inline = [
-           "sudo yum install telnet -y",
-           "sudo mkdir /tmp/centos",
+           "sudo apt-get install telnet -y",
+           "sudo mkdir /tmp/ubuntu",
            "w",
            "free -m",
            "sleep 5",
-           "sudo yum install wget -y",
+           "sudo apt-get install wget -y",
            "wget https://wordpress.org/latest.tar.gz"
         ]
 
