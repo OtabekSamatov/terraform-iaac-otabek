@@ -47,9 +47,9 @@ output "UBUNTU_AMI_ID" {
 
 
 
-output "CENTOS_AMI_ID" {
-  value = "${data.aws_ami.centos.id}"
-}
+# output "CENTOS_AMI_ID" {
+#   value = "${data.aws_ami.centos.id}"
+# }
 
 resource "aws_key_pair" "provisioner" {
   key_name   = "provisioner-key"
