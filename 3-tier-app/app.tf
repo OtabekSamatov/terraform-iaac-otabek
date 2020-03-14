@@ -9,7 +9,6 @@ module "wordpress" {
   instance_type   = "t2.micro"
   security_groups = ["${aws_security_group.allow_tls.id}"]
 
-
   # Auto scaling group
   asg_name                  = "wordpress-asg"
   vpc_zone_identifier       = [
