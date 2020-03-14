@@ -27,3 +27,7 @@ s3_folder_project               =   	"tower"
 s3_folder_type                  =   	"tools"
 s3_tfstate_file                 =   	"tower.tfstate"
 
+# Choose AZs to create subnets 
+az1                  = "us-east-2a"
+az2                  = "us-east-2b"
+az3                  = "us-east-2c"
