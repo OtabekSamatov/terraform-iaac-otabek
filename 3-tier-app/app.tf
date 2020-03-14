@@ -1,4 +1,4 @@
-
+# Creates ASG with launch configuration 
 module "wordpress" {
     version = "~> 2.0"
     name = "wordpress"
