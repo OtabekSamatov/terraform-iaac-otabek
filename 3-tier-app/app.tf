@@ -1,6 +1,7 @@
 
 module "wordpress" {
     version = "~> 2.0"
+    name = "wordpress"
   source = "terraform-aws-modules/autoscaling/aws"
 
   # Launch configuration
