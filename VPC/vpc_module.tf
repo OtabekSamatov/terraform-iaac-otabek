@@ -10,5 +10,8 @@ module "dev" {
 region = "${var.region}"
 cidr_block = "${var.cidr_block}"
 
+az1 = "${var.az1}"
+az2 = "${var.az2}"
+az3 = "${var.az3}"
 
 }
