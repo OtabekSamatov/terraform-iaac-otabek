@@ -37,6 +37,6 @@ resource "aws_elb" "bar" {
 }
 
 resource "aws_autoscaling_attachment" "wordpress" {
-  autoscaling_group_name = "${aws_autoscaling_group.wordpress.id}"
-  elb                    = "${aws_elb.wordpress.id}"
+  autoscaling_group_name = "wordpress-asg-20200314211807132400000002"
+  elb                    = "wordpress"
 }
