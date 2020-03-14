@@ -13,7 +13,7 @@ variable "cidr_block2_private" {}
 variable "cidr_block3_private" {}
 
 
-variable "public_subnet1" {}
-variable "public_subnet2" {}
-variable "public_subnet3" {}
+variable "az1" {}
+variable "az2" {}
+variable "az3" {}
 
