@@ -35,3 +35,8 @@ resource "aws_elb" "bar" {
     Name = "foobar-terraform-elb"
   }
 }
+
+resource "aws_autoscaling_attachment" "wordpress" {
+  autoscaling_group_name = "${aws_autoscaling_group.wordpress.id}"
+  elb                    = "${aws_elb.wordpress.id}"
+}
