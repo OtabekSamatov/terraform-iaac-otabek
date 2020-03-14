@@ -1,13 +1,13 @@
 # Create a new load balancer
 resource "aws_elb" "bar" {
   name               = "wordpress"
-  availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  subnets = [
+                               "${data.terraform_remote_state.dev.Subnet1}", 
+                               "${data.terraform_remote_state.dev.Subnet2}",
+                               "${data.terraform_remote_state.dev.Subnet3}"
+                               ]
 
-  access_logs {
-    bucket        = "foo"
-    bucket_prefix = "bar"
-    interval      = 60
-  }
+
 
   listener {
     instance_port     = 8000
